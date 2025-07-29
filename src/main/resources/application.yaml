@@ -11,6 +11,18 @@ spring:
             locator:
               enabled: false
               lower-case-service-id: true
+          httpclient:
+            connect-timeout: 10000
+            response-timeout: 2000
+resilience4j:
+  circuitbreaker:
+    instances:
+      default:
+        sliding-window-size: 10
+        permitted-number-of-calls-in-half-open-state: 2
+        failureRateThreshold: 50
+        waitDurationInOpenState: 10s
+
 info:
   app:
     name: "gateway-server"
